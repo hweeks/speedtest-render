@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>speed reults</title>
+  <style>
+    .result-container {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .result {
+      white-space: pre;
+      word-wrap: break-word;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="result-container">
+
+  </div>
+</body>
+<script type="text/javascript">
+  window.results = [{{ DATA_FROM_SERVER }}]
+  window.onload = () => {
+    debugger
+    const parent_result_wrapper = document.querySelector('.result-container')
+    window.results.forEach((result) => {
+      const result_div = document.createElement("div")
+      result_div.classList.add('result')
+      result_div.innerText = JSON.stringify(result, null, 2)
+      parent_result_wrapper.appendChild(result_div)
+    })
+  }
+</script>
+
+</html>
