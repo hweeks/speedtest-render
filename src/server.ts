@@ -8,8 +8,6 @@ const app = express();
 
 app.use(express.json());
 
-// app.use(express.static(resolve(__dirname, "..", "static")));
-
 app.engine('html', (filePath: string, options: {}, callback: any) => { // define the template engine
   readFile(filePath, (err, content) => {
     if (err) return callback(err)
