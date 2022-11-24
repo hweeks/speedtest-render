@@ -14,7 +14,7 @@ const build_download = (found_div: HTMLCanvasElement, data: speed_result[]) =>
       datasets: [
         {
           label: "download speed",
-          data: data.map((row) => row.downloadSpeed),
+          data: data.map((row) => row.dl_speed),
         },
       ],
     },
@@ -33,7 +33,7 @@ const build_upload = (found_div: HTMLCanvasElement, data: speed_result[]) =>
       datasets: [
         {
           label: "upload speed",
-          data: data.map((row) => row.uploadSpeed),
+          data: data.map((row) => row.ul_speed),
         },
       ],
     },
