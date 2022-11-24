@@ -4,14 +4,16 @@ import { writeFileSync, readFileSync } from "fs";
 
 export type speed_result = {
   bufferBloat: number;
-  dl_speed: number;
   downloaded: number;
-  latency: number;
-  ul_speed: number;
   uploaded: number;
   userIp: string;
   userLocation: string;
   timestamp: string;
+  servers: {
+    ul_speed: number;
+    dl_speed: number;
+    latency: number;
+  }[]
 };
 
 export const figure_my_speed_out_then_save_it_to_disk = () => {
