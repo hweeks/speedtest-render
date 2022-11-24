@@ -2,7 +2,7 @@ import { execSync } from "child_process";
 import { resolve, join } from "path";
 import { writeFileSync, readFileSync } from "fs";
 
-type speed_result = {
+export type speed_result = {
   bufferBloat: number;
   downloadSpeed: number;
   downloaded: number;
@@ -11,6 +11,7 @@ type speed_result = {
   uploaded: number;
   userIp: string;
   userLocation: string;
+  timestamp: string;
 };
 
 export const figure_my_speed_out_then_save_it_to_disk = () => {
@@ -23,6 +24,7 @@ export const figure_my_speed_out_then_save_it_to_disk = () => {
   const the_result: speed_result = JSON.parse(the_final_output);
   const now = Date.now();
   const filename = `speed-result-${now}.json`;
+  the_result.timestamp = now.toString();
   const file_path = resolve(__dirname, "../data");
   writeFileSync(join(file_path, filename), JSON.stringify(the_result, null, 2));
 };
@@ -36,8 +38,9 @@ export const gimmie_that_json = (filter?: string) => {
   const all_values: speed_result[] = [];
   files_to_read.forEach((path_to_json) => {
     const full_json_path = resolve(file_path, path_to_json);
-    let should_push = (filter && !path_to_json.includes(filter)) ?? true
-    if (should_push) all_values.push(JSON.parse(readFileSync(full_json_path, "utf-8")));
+    let should_push = (filter && !path_to_json.includes(filter)) ?? true;
+    if (should_push)
+      all_values.push(JSON.parse(readFileSync(full_json_path, "utf-8")));
   });
   return all_values;
 };
