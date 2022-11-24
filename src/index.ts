@@ -4,10 +4,10 @@ import { writeFileSync, readFileSync } from "fs";
 
 export type speed_result = {
   bufferBloat: number;
-  downloadSpeed: number;
+  dl_speed: number;
   downloaded: number;
   latency: number;
-  uploadSpeed: number;
+  ul_speed: number;
   uploaded: number;
   userIp: string;
   userLocation: string;

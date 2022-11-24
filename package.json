@@ -9,8 +9,10 @@
     "esbuild": "0.15.15",
     "esbuild-register": "3.4.1",
     "forever-monitor": "3.0.3",
+    "html-webpack-plugin": "5.5.0",
     "prettier": "2.8.0",
-    "typescript": "4.9.3"
+    "typescript": "4.9.3",
+    "webpack": "^5.75.0"
   },
   "scripts": {
     "build": "esbuild src/chart.ts --bundle --target=chrome58 --outfile=build/out.js",
@@ -18,14 +20,23 @@
     "speed-debug": "node --inspect-brk -r esbuild-register src/server.ts",
     "dl-one": "node -r esbuild-register src/script.ts",
     "fast-json-linux": "PUPPETEER_EXECUTABLE_PATH='/usr/bin/chromium-browser' fast --upload --json",
-    "fast-json": "fast --upload --json",
+    "fast-json": "speedtest --json",
     "start": "yarn build && node start.js"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "1.9.0",
     "chart.js": "4.0.1",
     "express": "4.18.2",
     "fast-cli": "3.2.0",
     "helmet": "6.0.0",
-    "node-cron": "3.0.2"
+    "immer": "9.0.16",
+    "node-cron": "3.0.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-is": "18.2.0",
+    "react-redux": "8.0.5",
+    "redux": "4.2.0",
+    "redux-thunk": "2.4.2",
+    "styled-components": "5.3.6"
   }
 }
