@@ -1,41 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>speed reults</title>
+    <style>
+      .result-container {
+        width: 100vw;
+        height: 100vh;
+      }
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>speed reults</title>
-  <style>
-    .result-container {
-      width: 100vw;
-      height: 100vh;
+      .result {
+        white-space: pre;
+        word-wrap: break-word;
+      }
+
+      .chart-wrapper {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="result-container">
+      <div class="chart-wrapper">
+        <h2 class="big-title">download</h2>
+        <canvas id="download-canvas"></canvas>
+        <h2 class="big-title">upload</h2>
+        <canvas id="upload-canvas"></canvas>
+        <h2 class="big-title">latency</h2>
+        <canvas id="latency-canvas"></canvas>
+      </div>
+    </div>
+  </body>
+  <script type="module">
+    import "/out.js"
+    window.results = [{{ DATA_FROM_SERVER }}]
+    window.onload = () => {
+      if (window.build_chart) {
+        window.build_chart(window.results, "download-canvas")
+        window.build_chart(window.results, "upload-canvas")
+        window.build_chart(window.results, "latency-canvas")
+      }
     }
-
-    .result {
-      white-space: pre;
-      word-wrap: break-word;
-    }
-  </style>
-</head>
-
-<body>
-  <div class="result-container">
-
-  </div>
-</body>
-<script type="text/javascript">
-  window.results = [{{ DATA_FROM_SERVER }}]
-  window.onload = () => {
-    debugger
-    const parent_result_wrapper = document.querySelector('.result-container')
-    window.results.forEach((result) => {
-      const result_div = document.createElement("div")
-      result_div.classList.add('result')
-      result_div.innerText = JSON.stringify(result, null, 2)
-      parent_result_wrapper.appendChild(result_div)
-    })
-  }
-</script>
-
+  </script>
 </html>
